@@ -29,6 +29,23 @@ export default defineConfig(({mode,command}) => {
           rewrite: (p) => p.replace(/^\/dev-api/, '')
         }
       }
+    },
+    css: {
+      postcss: {
+        plugins: [
+          {
+            postcssPlugin: 'internal:charset-removal',
+            AtRule: {
+              charset: (atRule) => {
+                if (atRule.name === 'charset') {
+                  atRule.remove();
+                }
+              }
+            }
+          }
+        ]
+      }
     }
+    // sass的@符号配置
   }
 })
