@@ -2,23 +2,30 @@
   <!-- 给整个app动态绑定样式 -->
   <div :class="classObj" class="app-wrapper" :style="{'--current-color':theme}">
   
-    <div v-if="device==='mobile' && sidebar.opened" class="drawer-bg"></div>
+    <div v-if="device==='mobile' && sidebar.opened" class="drawer-bg" @click="handleClickOutside">
+      <!-- 侧边栏 -->
+      <sidebar v-if="!sidebar.hide" class="sidebar-container"/>
+
+    </div>
   </div>
 </template>
 
 <script setup>
 import useAppStore from '@/store/modules/app'
 import useSettingsStore from '@/store/modules/settings'
-
+import Sidebar from './components/Sidebar/index.vue'
+//设置相关
 const settingsStore = useSettingsStore()
 
-const device = computed(() => useAppStore().device);
 //设备
-const sidebar = computed(() => useAppStore().sideBar);
-// 侧边栏
+const device = computed(() => useAppStore().device);
 
-const theme = computed(() => settingsStore.theme);
+// 侧边栏
+const sidebar = computed(() => useAppStore().sideBar);
+
 //设置app主题
+const theme = computed(() => settingsStore.theme);
+
 
 //sidebar等部分是否折叠以及设备信息
 const classObj = computed(() => ({
@@ -27,12 +34,30 @@ const classObj = computed(() => ({
   withoutAnimation: sidebar.value.withoutAnimation,
   mobile: device.value === 'mobile'
 }))
-// class
+
+/**
+ * 关闭侧边栏
+ */
+function handleClickOutside() {
+  useAppStore().closeSideBar({ withoutAnimation: false })
+}
 </script>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/mixin.scss";
 @import "@/assets/styles/variables.module.scss";
+
+.app-wrapper {
+  @include clearfix;
+  position: relative;
+  height: 100%;
+  width: 100%;
+
+  &.mobile.openSidebar {
+    position: fixed;
+    top: 0;
+  }
+}
 .drawer-bg {
   background: #000;
   opacity: 0.3;
