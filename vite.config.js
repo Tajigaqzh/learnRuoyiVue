@@ -4,6 +4,7 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig(({mode,command}) => {
+  console.log("config")
   const env = loadEnv(mode, process.cwd())
   return {
     plugins: createVitePlugins(env, command === 'build'),

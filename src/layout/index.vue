@@ -2,11 +2,11 @@
   <!-- 给整个app动态绑定样式 -->
   <div :class="classObj" class="app-wrapper" :style="{'--current-color':theme}">
   
-    <div v-if="device==='mobile' && sidebar.opened" class="drawer-bg" @click="handleClickOutside">
-      <!-- 侧边栏 -->
-      <sidebar v-if="!sidebar.hide" class="sidebar-container"/>
+    <div v-if="device === 'mobile' && sidebar.opened" class="drawer-bg" @click="handleClickOutside"/>
+    <!-- 侧边栏 -->
+    <sidebar v-if="!sidebar.hide" class="sidebar-container"/>
+   
 
-    </div>
   </div>
 </template>
 
@@ -52,6 +52,7 @@ function handleClickOutside() {
   position: relative;
   height: 100%;
   width: 100%;
+  background-color: #ababab;
 
   &.mobile.openSidebar {
     position: fixed;
