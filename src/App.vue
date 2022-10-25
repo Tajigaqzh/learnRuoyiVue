@@ -7,9 +7,6 @@
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 // import useUserStore from '../store/modules/user';
 // userStore.login(info)
-
-
-
 </script>
 
 <style scoped lang="scss">

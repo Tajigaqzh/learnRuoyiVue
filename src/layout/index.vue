@@ -4,7 +4,7 @@
   
     <div v-if="device === 'mobile' && sidebar.opened" class="drawer-bg" @click="handleClickOutside"/>
     <!-- 侧边栏 -->
-    <sidebar v-if="!sidebar.hide" class="sidebar-container"/>
+    <side-bar v-if="!sidebar.hide" class="sidebar-container"/>
    
 
   </div>
@@ -13,7 +13,8 @@
 <script setup>
 import useAppStore from '@/store/modules/app'
 import useSettingsStore from '@/store/modules/settings'
-import Sidebar from './components/Sidebar/index.vue'
+// import Sidebar from './components/Sidebar/index.vue'
+import SideBar from './components/SideBar/index.vue'
 //设置相关
 const settingsStore = useSettingsStore()
 
@@ -41,6 +42,7 @@ const classObj = computed(() => ({
 function handleClickOutside() {
   useAppStore().closeSideBar({ withoutAnimation: false })
 }
+
 </script>
 
 <style lang="scss" scoped>

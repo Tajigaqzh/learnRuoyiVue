@@ -7,8 +7,10 @@ export default defineConfig(({mode,command}) => {
   console.log("config")
   const env = loadEnv(mode, process.cwd())
   console.log("vite config")
+  
   return {
     plugins: createVitePlugins(env, command === 'build'),
+  
     resolve: {
       // https://cn.vitejs.dev/config/#resolve-alias
       alias: {
@@ -23,6 +25,7 @@ export default defineConfig(({mode,command}) => {
     server: {
       port: 80,
       host: true,
+      hmr: true,
       open: true,
       proxy: {
         '/dev-api': {
