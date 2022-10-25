@@ -20,5 +20,8 @@ const showLogo = computed(() => settingsStore.sidebarLogo);
 const sideTheme = true
 //是否折叠logo
 const isCollapse = computed(() => appStore.sideBar.opened);
+console.log("sidebar page !")
+console.log(import.meta.env.VITE_API);
+
 </script>
 

@@ -26,6 +26,7 @@ defineProps({
   },
 });
 console.log("logo page")
+console.log(import.meta.env.VITE_API);
 const title = ref('若依管理系统');
 const settingsStore = useSettingsStore();
 const sideTheme = computed(() => settingsStore.sideTheme);
