@@ -54,7 +54,6 @@ function handleClickOutside() {
   position: relative;
   height: 100%;
   width: 100%;
-  background-color: #ababab;
 
   &.mobile.openSidebar {
     position: fixed;
