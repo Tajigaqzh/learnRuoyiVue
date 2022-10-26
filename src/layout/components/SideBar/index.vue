@@ -44,7 +44,7 @@ import usePermissionStore from '@/store/modules/permission'
 // variables css
 import variables from "@/assets/styles/variables.module.scss";
 import Logo from "./Logo.vue";
-import SidebarItemVue from "./SidebarItem.vue";
+import SidebarItem from "./SidebarItem.vue";
 
 const settingsStore = useSettingsStore();
 const permissionStore = usePermissionStore()
