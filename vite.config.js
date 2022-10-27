@@ -4,7 +4,6 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig(({mode,command}) => {
-  console.log("config")
   const env = loadEnv(mode, process.cwd())
   console.log("vite config")
   
