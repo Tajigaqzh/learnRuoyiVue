@@ -1,3 +1,5 @@
+import { createRouter, createWebHistory } from "vue-router";
+import Layout from "@/layout";
 /**
  * Note: 路由配置项
  *
@@ -19,25 +21,58 @@
     activeMenu: '/system/user'      // 当路由设置了该属性，则会高亮相对应的侧边栏。
   }
  */
-import {createRouter, createWebHistory} from "vue-router";
-import Layout from '@/layout'
+
 //公共路由
 export const constantRoutes = [
-    {
-        path:'/',
-        component: Layout,
-    }
-]
+	{
+		// index
+		path: "",
+		component: Layout,
+		redirect: "/index",
+		children: [
+			{
+				path: "/index",
+				component: () => import("@/views/index"),
+				name: "Index",
+				meta: { title: "首页", icon: "dashboard", affix: true },
+			},
+		],
+	},
+	{
+		// 重定向
+		path: "/redirect",
+		component: Layout,
+		hidden: true,
+		children: [
+			{
+				path: "/redirect/:path(.*)",
+				component: () => import("@/views/redirect/index.vue"),
+			},
+		],
+	},
+	{
+		// 登录
+		path: "/login",
+		component: () => import("@/views/login"),
+		hidden: true,
+	},
+	{
+        // 注册
+		path: "/register",
+		component: () => import("@/views/register"),
+		hidden: true,
+	},
+];
 
 const router = createRouter({
-    history:createWebHistory(),
-    routes:constantRoutes,
-    scrollBehavior(to,from,savedPosition) {
-        if (savedPosition) {
-            return savedPosition
-        } else {
-            return {top: 0}
-        }
-    }
-})
-export default router
+	history: createWebHistory(),
+	routes: constantRoutes,
+	scrollBehavior(to, from, savedPosition) {
+		if (savedPosition) {
+			return savedPosition;
+		} else {
+			return { top: 0 };
+		}
+	},
+});
+export default router;

@@ -6,7 +6,7 @@
       list-type="picture-card"
       :on-success="handleUploadSuccess"
       :before-upload="handleBeforeUpload"
-      :limit="limit"
+      :limit="limit"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
       :on-error="handleUploadError"
       :on-exceed="handleExceed"
       ref="imageUpload"

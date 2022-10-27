@@ -64,7 +64,7 @@ const sidebarRouters =  computed(() => permissionStore.sidebarRouters);
 /**
  * 页面加载时默认激活的菜单
  * default-active
- */
+ */       
 const activeMenu = computed(() => {
   const { meta, path } = route;
   if (meta.activeMenu) {
