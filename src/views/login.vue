@@ -66,6 +66,7 @@
         </div>
       </el-form-item>
     </el-form>
+
     <!--  底部  -->
     <div class="el-login-footer">
       <span>Copyright © 2018-2022 ruoyi.vip All Rights Reserved.</span>
@@ -76,7 +77,7 @@
 <script setup>
 const router = useRouter();
 const { proxy } = getCurrentInstance();
-console.log("aaa")
+
 const loginForm = ref({
   username: "admin",
   password: "admin123",

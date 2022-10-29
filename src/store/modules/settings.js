@@ -27,5 +27,20 @@ const useSettingsStore = defineStore("settings", {
 				? dynamicTitle
 				: storageSetting.dynamicTitle,
 	}),
+	actions: {
+		// 修改布局
+		changeSetting(data){
+			const {key,value}=data
+			if (this.hasOwnProperty(key)) {
+				this[key] = value
+			}
+		},
+		// 设置标题
+		setTitle(title) {
+			this.title = title
+			useDynamicTitle();
+
+		}
+	}
 });
 export default useSettingsStore
