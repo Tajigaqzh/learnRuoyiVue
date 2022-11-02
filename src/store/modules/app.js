@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+
 import Cookies from "js-cookie";
 
 const useAppStore = defineStore("app", {
@@ -19,6 +20,7 @@ const useAppStore = defineStore("app", {
 			//是否隐藏
 		},
 	}),
+
 	actions: {
 		/**
 		 * 切换侧边栏,侧边栏如果打开cookie设置sidebarStatus为1，关闭则为0

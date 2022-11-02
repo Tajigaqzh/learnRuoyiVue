@@ -99,6 +99,10 @@ const captchaEnabled = ref(true);
 // 注册开关
 const register = ref(true);
 const redirect = ref(undefined);
+
+function getCode() {
+  
+}
 </script>
 
 <style lang="scss" scoped>

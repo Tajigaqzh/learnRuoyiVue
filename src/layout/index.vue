@@ -17,6 +17,7 @@ import useSettingsStore from '@/store/modules/settings'
 import SideBar from './components/SideBar/index.vue'
 //设置相关
 const settingsStore = useSettingsStore()
+const appStore = useAppStore()
 
 //设备
 const device = computed(() => useAppStore().device);
