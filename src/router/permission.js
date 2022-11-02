@@ -4,6 +4,8 @@ import router from './index.js'
 import { ElMessage } from 'element-plus'
 import { getToken } from '@/utils/auth'
 import useSettingsStore from '@/store/modules/settings'
+import useUserStore from '@/store/modules/user'
+import { isRelogin } from '@/utils/request'
 
 NProgress.configure({showSpinner:false})
 // nProgress.configure({ showSpinner:false })
