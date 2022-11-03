@@ -18,16 +18,13 @@ const service = axios.create({
     timeout: 10000
 })
 service.interceptors.request.use(config => {
-    // 是否需要设置token
-    const isToken = (config.headers || {}).isToken === false
-
-    // 是否需要防止数据重复提交
-    const isRepeatSubmit = (config.headers || {}).repeatSubmit === false
-
-    if (getToken() && !isToken) {
-        config.headers['Authorization'] = 'Bearer' + getToken()
-        // 让每次请求带上用户的token
-    }
+    // 是否需要设置 token
+  const isToken = (config.headers || {}).isToken === false
+  // 是否需要防止数据重复提交
+  const isRepeatSubmit = (config.headers || {}).repeatSubmit === false
+  if (getToken() && !isToken) {
+    config.headers['Authorization'] = 'Bearer ' + getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
+  }
     if (config.method === 'get' && config.params) {
         // 映射params参数
         let url = config.url + '?' + transParams(config.params);
@@ -66,6 +63,7 @@ service.interceptors.request.use(config => {
 
 // 响应拦截器
 service.interceptors.response.use(res => {
+    // console.log('响应拦截器',res.data.code)
     // 未设置状态码则默认成功状态
     const code = res.data.code || 200;
     // 获取错误信息
@@ -74,7 +72,7 @@ service.interceptors.response.use(res => {
     if(res.request.responseType ===  'blob' || res.request.responseType ===  'arraybuffer'){
       return res.data
     }
-    console.log('request:',res)
+    // console.log('request:',res)
     if (code === 401) {
       if (!isRelogin.show) {
         isRelogin.show = true;
@@ -92,6 +90,7 @@ service.interceptors.response.use(res => {
         isRelogin.show = false;
       });
     }
+    console.log(code)
       return Promise.reject('无效的会话，或者会话已过期，请重新登录。')
     } else if (code === 500) {
       ElMessage({

@@ -6,7 +6,7 @@
         <el-input
           v-model="loginForm.username"
           type="text"
-          size="large"
+          size="default"
           auto-complete="off"
           placeholder="账号"
         >
@@ -35,7 +35,7 @@
           size="large"
           auto-complete="off"
           placeholder="验证码"
-          style="width: 63%"
+          style="width: 55%"
           @keyup.enter="handleLogin"
         >
           <template #prefix
@@ -136,6 +136,7 @@ function handleLogin() {
         .catch(() => {
           loading.value = false;
           if (captchaEnabled.value) {
+            // 重新获取验证码
             getCode();
           }
         });
@@ -162,28 +163,38 @@ getCookie();
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-image: url("../assets/images/login-background.jpg");
+  // background-image: url("../assets/images/login-background.jpg");
+  background-image: url("../assets/images/your-name-bc.png");
   background-size: cover;
 }
 .title {
   margin: 0px auto 30px auto;
   text-align: center;
   color: #707070;
+  font-weight: 500;
 }
 
 .login-form {
-  border-radius: 6px;
-  background: #ffffff;
+  background-color: rgba(255, 255, 255, 0.3);
   width: 400px;
+  border-radius: 30px;
   padding: 25px 25px 5px 25px;
-  .el-input {
-    height: 40px;
-    input {
-      height: 40px;
+  // 毛玻璃
+  backdrop-filter: blur(3px);
+  border-left: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  .el-form-item {
+    .el-input {
+      height: 35px;
+      input {
+        height: 35px;
+      }
     }
   }
+
   .input-icon {
-    height: 39px;
+    height: 35px;
     width: 14px;
     margin-left: 0px;
   }
@@ -194,6 +205,7 @@ getCookie();
   color: #bfbfbf;
 }
 .login-code {
+  margin-left: 5%;
   width: 33%;
   height: 40px;
   float: right;

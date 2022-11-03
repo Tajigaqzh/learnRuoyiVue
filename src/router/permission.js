@@ -6,6 +6,8 @@ import { getToken } from '@/utils/auth'
 import useSettingsStore from '@/store/modules/settings'
 import useUserStore from '@/store/modules/user'
 import { isRelogin } from '@/utils/request'
+import { isHttp } from '@/utils/validate'
+import usePermissionStore from '@/store/modules/permission'
 
 NProgress.configure({showSpinner:false})
 // nProgress.configure({ showSpinner:false })
@@ -23,6 +25,7 @@ router.beforeEach((to,from,next)=>{
                 // 判断当前用户是否已拉取完user_info信息
                 useUserStore().getInfo().then(() => {
                   isRelogin.show = false
+    
                   usePermissionStore().generateRoutes().then(accessRoutes => {
                     // 根据roles权限生成可访问的路由表
                     accessRoutes.forEach(route => {
@@ -33,6 +36,7 @@ router.beforeEach((to,from,next)=>{
                     next({ ...to, replace: true }) // hack方法 确保addRoutes已完成
                   })
                 }).catch(err => {
+                  console.log('error',err)
                   useUserStore().logOut().then(() => {
                     ElMessage.error(err)
                     next({ path: '/' })
