@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Layout from "@/layout";
+// import Layout from "@/layout";
+const Layout = ()=> import('@/layout')
 /**
  * Note: 路由配置项
  *

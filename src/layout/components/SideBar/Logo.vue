@@ -1,6 +1,6 @@
 <template>
   <div
-    class="sider-logo-container"
+    class="sidebar-logo-container"
     :class="{ collapse: collapse }"
     :style="{
       backgroundColor:
@@ -15,7 +15,6 @@
       <router-link v-if="collapse" key="collapse" class="sidebar-logo-link" to="/">
         <img v-if="logo" :src="logo" class="sidebar-logo" />
         <h1
-          v-else
           class="sidebar-title"
           :style="{
             color:
@@ -27,7 +26,6 @@
           {{ title }}
         </h1>
       </router-link>
-
       <router-link v-else key="expand" class="sidebar-logo-link" to="/">
         <img v-if="logo" :src="logo" class="sidebar-logo" />
         <h1
@@ -43,13 +41,12 @@
         </h1>
       </router-link>
     </transition>
-    <!-- 过渡动画 -->
   </div>
 </template>
 <script setup>
+import variables from "@/assets/styles/variables.module.scss";
 import logo from "@/assets/logo/logo.png";
 import useSettingStore from "@/store/modules/settings";
-import variables from "@/assets/styles/variables.module.scss";  
 
 defineProps({
   collapse: {
@@ -57,9 +54,11 @@ defineProps({
     required: true,
   },
 });
-const title = ref(import.meta.env.VITE_APP_TITLE || "若依管理系统");
-const settingsStore = useSettingsStore();
+const projectTitle = import.meta.env.VITE_APP_TITLE
+const settingsStore = useSettingStore();
 const sideTheme = computed(() => settingsStore.sideTheme);
+
+const title = ref(projectTitle || "")
 </script>
 <style scoped lang="scss">
 .sidebarLogoFade-enter-active {
@@ -98,6 +97,7 @@ const sideTheme = computed(() => settingsStore.sideTheme);
       font-size: 14px;
       font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
       vertical-align: middle;
+      margin-left: 5%;
     }
   }
 

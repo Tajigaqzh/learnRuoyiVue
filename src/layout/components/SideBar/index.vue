@@ -8,7 +8,7 @@
           : variables.menuLightBackground,
     }"
   >
-    <Logo v-if="!showLogo" :collapse="isCollapse" />
+    <logo v-if="showLogo" :collapse="isCollapse"/>
     <!-- logo props：是否展示，是否折叠-->
     <el-scrollbar :class="sideTheme" wrap-class="scrollbar-wrapper">
       <el-menu
@@ -38,11 +38,12 @@
   </div>
 </template>
 <script setup>
+import variables from "@/assets/styles/variables.module.scss";
+// variables css
 import useSettingsStore from "@/store/modules/settings";
 import useAppStore from "@/store/modules/app";
 import usePermissionStore from '@/store/modules/permission'
-// variables css
-import variables from "@/assets/styles/variables.module.scss";
+
 import Logo from "./Logo.vue";
 import SidebarItem from "./SidebarItem.vue";
 
