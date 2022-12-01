@@ -1,5 +1,5 @@
 import {defineConfig, loadEnv} from 'vite'
-import createVitePlugins from './vite/plugins'
+import createVitePlugins from './viteplugins'
 import path from 'path'
 
 // https://vitejs.dev/config/
@@ -34,6 +34,7 @@ export default defineConfig(({mode,command}) => {
         }
       }
     },
+    //fix:error:stdin>:7356:1: warning: "@charset" must be the first rule in the file
     css: {
       postcss: {
         plugins: [

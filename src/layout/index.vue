@@ -56,8 +56,8 @@ function handleClickOutside() {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/styles/mixin.scss";
-@import "@/assets/styles/variables.module.scss";
+@import "../assets/styles/mixin.scss";
+@import "../assets/styles/variables.module.scss";
 .app-wrapper {
   @include clearfix;
   position: relative;
